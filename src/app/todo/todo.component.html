@@ -1,0 +1,26 @@
+<div class="todo-container">
+  <h1>To-Do List</h1>
+  <form (ngSubmit)="addTodo()">
+    <div>
+      <label>Title:</label>
+      <input [(ngModel)]="newTodo.title" name="title" required />
+    </div>
+    <div>
+      <label>Description:</label>
+      <textarea [(ngModel)]="newTodo.description" name="description"></textarea>
+    </div>
+    <button type="submit">{{ editIndex !== null ? 'Update' : 'Add' }} To-Do</button>
+  </form>
+
+  <ul>
+    <li *ngFor="let todo of todos; index as i">
+      <div [class.completed]="todo.completed">
+        <h3>{{ todo.title }}</h3>
+        <p>{{ todo.description }}</p>
+      </div>
+      <button (click)="markAsCompleted(i)">{{ todo.completed ? 'Undo' : 'Complete' }}</button>
+      <button (click)="editTodo(i)">Edit</button>
+      <button (click)="deleteTodo(i)">Delete</button>
+    </li>
+  </ul>
+</div>
